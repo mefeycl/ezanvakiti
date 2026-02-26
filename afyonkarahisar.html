@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afyonkarahisar Ezan Vakitleri | İmsak Kaçta? (Güncel)</title>
+
+  <style>
+    :root{
+      /* Altın oran sistemi */
+      --phi: 1.618;
+      --u: 12px; /* BÜYÜK UI */
+      --s1: calc(var(--u) * 1);
+      --s2: calc(var(--u) * var(--phi));
+      --s3: calc(var(--s2) * var(--phi));
+      --s4: calc(var(--s3) * var(--phi));
+
+      --glass: rgba(255,255,255,.10);
+      --glass2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.18);
+      --stroke2: rgba(255,255,255,.30);
+
+      --txt: rgba(255,255,255,.95);
+      --muted: rgba(255,255,255,.74);
+      --muted2: rgba(255,255,255,.60);
+
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --blur: 18px;
+
+      --radius: calc(var(--s2) * 1.2);
+      --radius2: calc(var(--s3) * 1.05);
+
+      --h1: 20px;
+      --big: 36px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--txt);
+      overflow-x:hidden;
+      background:#070b18;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "SF Pro Display","SF Pro Text","Helvetica Neue", Helvetica, Arial, "Segoe UI", Roboto;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Arkaplan ana katman */
+    .bg{
+      position:fixed; inset:0; z-index:-3;
+      background: linear-gradient(180deg, #050812 0%, #0b1230 55%, #070a14 100%);
+      transition: background 900ms ease, filter 500ms ease;
+      filter:saturate(1.08);
+    }
+    .bg::before,.bg::after{
+      content:"";
+      position:absolute; inset:0;
+      pointer-events:none;
+    }
+
+    /* Dawn 04-07 */
+    body[data-theme="dawn"] .bg{
+      background:
+        radial-gradient(1200px 700px at 25% 25%, rgba(255,170,220,.22), transparent 60%),
+        radial-gradient(1000px 650px at 75% 35%, rgba(120,180,255,.30), transparent 60%),
+        linear-gradient(180deg, #05071a 0%, #0b1641 55%, #1c2a55 100%);
+      filter:saturate(1.12);
+    }
+    body[data-theme="dawn"] .bg::before{
+      background: radial-gradient(circle at 30% 70%, rgba(255,255,255,.10), transparent 60%);
+      opacity:.9;
+      animation: haze 10s ease-in-out infinite;
+    }
+
+    /* Noon 07-15 */
+    body[data-theme="noon"] .bg{
+      background:
+        radial-gradient(1200px 700px at 20% 18%, rgba(210,245,255,.45), transparent 62%),
+        radial-gradient(900px 600px at 80% 28%, rgba(255,255,255,.26), transparent 58%),
+        linear-gradient(180deg, #0b2f6f 0%, #1784de 55%, #0b2f6f 100%);
+      filter:saturate(1.20) brightness(1.10);
+    }
+    body[data-theme="noon"] .bg::before{
+      background:
+        radial-gradient(260px 120px at 15% 20%, rgba(255,255,255,.25), transparent 70%),
+        radial-gradient(320px 140px at 45% 30%, rgba(255,255,255,.22), transparent 70%),
+        radial-gradient(280px 120px at 75% 22%, rgba(255,255,255,.20), transparent 70%);
+      opacity:.92;
+      animation: clouds 22s linear infinite;
+    }
+
+    /* Gold 15-18 */
+    body[data-theme="gold"] .bg{
+      background:
+        radial-gradient(1100px 700px at 30% 30%, rgba(255,210,120,.30), transparent 60%),
+        radial-gradient(900px 600px at 75% 35%, rgba(255,140,80,.18), transparent 55%),
+        linear-gradient(180deg, #1b1a26 0%, #6a3b1b 55%, #1a1020 100%);
+      filter:saturate(1.28);
+    }
+    body[data-theme="gold"] .bg::before{
+      background: linear-gradient(90deg, rgba(255,230,170,.10), transparent 40%, rgba(255,180,120,.10));
+      opacity:.55;
+      animation: breeze 7s ease-in-out infinite;
+    }
+
+    /* Sunset 18-20 */
+    body[data-theme="sunset"] .bg{
+      background:
+        radial-gradient(1200px 700px at 30% 35%, rgba(255,120,120,.30), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(170,90,255,.22), transparent 55%),
+        linear-gradient(180deg, #140714 0%, #3a1432 55%, #070a14 100%);
+      filter:saturate(1.33);
+    }
+    body[data-theme="sunset"] .bg::before{
+      background: radial-gradient(circle at 55% 40%, rgba(255,200,160,.12), transparent 60%);
+      opacity:.8;
+      animation: haze 12s ease-in-out infinite;
+    }
+
+    /* Night 20-04 */
+    body[data-theme="night"] .bg{
+      background:
+        radial-gradient(1100px 700px at 25% 25%, rgba(120,140,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 80% 35%, rgba(160,120,255,.16), transparent 55%),
+        linear-gradient(180deg, #03050f 0%, #0b1230 60%, #03050f 100%);
+      filter:saturate(1.06);
+    }
+    body[data-theme="night"] .bg::before{
+      background:
+        radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(1.2px 1.2px at 30% 35%, rgba(255,255,255,.6), transparent 60%),
+        radial-gradient(1.6px 1.6px at 55% 18%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(1.1px 1.1px at 72% 40%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1.7px 1.7px at 88% 22%, rgba(255,255,255,.65), transparent 60%);
+      opacity:.9;
+      animation: twinkle 4.5s ease-in-out infinite;
+    }
+    body[data-theme="night"] .bg::after{
+      background: radial-gradient(600px 260px at 60% 30%, rgba(255,255,255,.08), transparent 70%);
+      opacity:.65;
+      animation: milky 18s ease-in-out infinite;
+    }
+
+    .grain{
+      position:fixed; inset:0; z-index:-2;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(%23n)" opacity=".25"/></svg>');
+      mix-blend-mode:overlay;
+      pointer-events:none;
+      opacity:.33;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding: var(--s3) var(--s2) calc(var(--s4));
+    }
+
+    header{
+      display:flex;
+      gap:var(--s1);
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .brand{ display:flex; gap:var(--s1); align-items:center; }
+    .logo{
+      width:52px; height:52px; border-radius:18px;
+      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
+      border:1px solid var(--stroke);
+      backdrop-filter: blur(var(--blur));
+      box-shadow:var(--shadow);
+      display:grid; place-items:center;
+      position:relative; overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%);
+      transform:rotate(20deg);
+    }
+    .logo span{ position:relative; font-size:22px; }
+
+    h1{ margin:0; font-size:var(--h1); letter-spacing:.2px; font-weight:700; }
+    .sub{ margin-top:4px; color:var(--muted); font-size:14px; letter-spacing:.15px; }
+
+    .controls{
+      display:flex; gap:var(--s1); flex-wrap:wrap; align-items:center;
+      padding: var(--s2);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background:linear-gradient(180deg, var(--glass), var(--glass2));
+      backdrop-filter: blur(var(--blur));
+      box-shadow:var(--shadow);
+    }
+    select, button{
+      border-radius: calc(var(--radius) * .8);
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(10,14,30,.40);
+      color:var(--txt);
+      padding: calc(var(--s1) * 1.1) var(--s2);
+      outline:none;
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+    button{cursor:pointer}
+    button:hover{background:rgba(10,14,30,.55)}
+    button:active{transform: translateY(1px)}
+    .btnIcon{
+      display:inline-grid; place-items:center;
+      width:18px; height:18px;
+      margin-right:8px;
+      vertical-align:-3px;
+      opacity:.92;
+    }
+    .pillNote{
+      font-size:13px;
+      color:var(--muted2);
+      margin-left:6px;
+      max-width:360px;
+    }
+
+    .grid{
+      margin-top: var(--s2);
+      display:grid;
+      grid-template-columns: 1.618fr 1fr;
+      gap: var(--s2);
+    }
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      border:1px solid var(--stroke);
+      border-radius: var(--radius2);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      backdrop-filter: blur(var(--blur));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card-pad{padding: var(--s3);}
+
+    .hero{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: var(--s2);
+      flex-wrap:wrap;
+    }
+    .nextTitle{ font-size:12px; color:var(--muted2); margin:0; letter-spacing:.3px; text-transform:uppercase; }
+    .nextName{
+      font-size: 34px;
+      margin:7px 0 0;
+      font-weight:820;
+      letter-spacing:.2px;
+      text-shadow: 0 1px 0 rgba(0,0,0,.18);
+    }
+    .countdown{
+      font-variant-numeric: tabular-nums;
+      font-size: var(--big);
+      letter-spacing:.8px;
+      margin-top:10px;
+      font-weight:900;
+      text-shadow: 0 2px 10px rgba(0,0,0,.22);
+    }
+    .tiny{ color:var(--muted); font-size:13px; margin-top:10px; letter-spacing:.2px; }
+    .status{ color:var(--muted2); font-size:13px; margin-top:12px }
+
+    /* Ay premium */
+    .moonWrap{
+      width:120px; height:120px;
+      position:relative; display:grid; place-items:center;
+      border-radius: calc(var(--radius2) * 0.95);
+      background-color: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .moonWrap::before{
+      content:"";
+      position:absolute; inset:-35%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.26), transparent 55%),
+        radial-gradient(circle at 70% 75%, rgba(255,255,255,.10), transparent 60%);
+      opacity:.95;
+    }
+    .moonWrap::after{
+      content:"";
+      position:absolute;
+      width:160%;
+      height:60%;
+      left:-30%;
+      top:-22%;
+      background: linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+      transform: rotate(10deg);
+      opacity:.6;
+    }
+    #moonImg{
+      width:92px; height:92px;
+      object-fit:contain;
+      position:relative;
+      filter:
+        drop-shadow(0 22px 28px rgba(0,0,0,.55))
+        drop-shadow(0 6px 10px rgba(0,0,0,.25))
+        brightness(1.10)
+        contrast(1.12);
+      animation: moonFloat 6.5s ease-in-out infinite;
+    }
+    @keyframes moonFloat{
+      0%,100%{ transform: translateY(1px) scale(1.02); }
+      50%{ transform: translateY(-2px) scale(1.03); }
+    }
+
+    .times{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: var(--s2);
+    }
+    @media (max-width:900px){
+      .times{grid-template-columns: repeat(2, 1fr)}
+    }
+
+    .t{
+      padding: 16px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .t::after{
+      content:"";
+      position:absolute; inset:-60%;
+      background:radial-gradient(circle at 25% 25%, rgba(255,255,255,.18), transparent 55%);
+      transform:rotate(10deg);
+      opacity:.7;
+    }
+    .tTop{ position:relative; display:flex; align-items:center; gap:10px; }
+    .tIcon{ width:18px; height:18px; display:inline-grid; place-items:center; opacity:.95; }
+    .t .name{ position:relative; font-size:13px; color:var(--muted2); letter-spacing:.25px; }
+    .t .val{
+      position:relative;
+      margin-top:9px;
+      font-size:24px;
+      font-variant-numeric: tabular-nums;
+      font-weight:880;
+      letter-spacing:.2px;
+      text-shadow: 0 1px 8px rgba(0,0,0,.18);
+    }
+    .t.active{
+      border-color: rgba(255,255,255,.38);
+      background: rgba(255,255,255,.16);
+      box-shadow: 0 0 22px rgba(255,255,255,.12);
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    .miniRow{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 18px 14px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted2);
+      font-size:13px;
+      flex-wrap:wrap;
+      letter-spacing:.15px;
+    }
+
+    /* Günün Sözü */
+    .quoteBox{
+      position: relative;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.10);
+      padding: 18px 18px 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+    .quoteMark{
+      position:absolute;
+      top: -16px;
+      left: 14px;
+      font-size: 58px;
+      line-height: 1;
+      opacity: .25;
+      user-select:none;
+    }
+    .quoteText{
+      font-size: 20px;
+      line-height: 1.45;
+      font-weight: 760;
+      letter-spacing: .12px;
+    }
+    .quoteSource{
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted2);
+    }
+    .quoteHint{
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    /* Mobil widget hissi + yatay scroll + otomatik ortalama */
+    @media (max-width: 700px){
+      .wrap{ padding: 18px 14px 26px; }
+      header{ gap: 10px; }
+
+      .controls{ width: 100%; justify-content: space-between; }
+      select{ width: calc(50% - 6px); }
+      #locBtn, #refreshBtn{ width: calc(50% - 6px); }
+
+      .grid{ grid-template-columns: 1fr; }
+
+      .card-pad{ padding: 18px; }
+
+      .hero{ align-items: center; justify-content: space-between; gap: 10px; }
+
+      .nextName{ font-size: 32px; }
+      .countdown{ font-size: 40px; }
+
+      .moonWrap{ width: 84px; height: 84px; border-radius: 22px; }
+      #moonImg{ width: 66px; height: 66px; }
+
+      .times{
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(165px, 1fr);
+        overflow-x: auto;
+        padding: 2px 0 10px;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+      }
+      .times::-webkit-scrollbar{ height: 0px; }
+      .t{ scroll-snap-align: center; }
+    }
+
+    /* Öğle modu: okunabilirlik boost */
+    body[data-theme="noon"] .card,
+    body[data-theme="noon"] .controls{
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+      border-color: rgba(255,255,255,.24);
+    }
+    body[data-theme="noon"] .t{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.20);
+    }
+    body[data-theme="noon"] .t.active{
+      background: rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.34);
+      box-shadow: 0 0 26px rgba(255,255,255,.14);
+    }
+    body[data-theme="noon"] .sub,
+    body[data-theme="noon"] .pillNote,
+    body[data-theme="noon"] .miniRow,
+    body[data-theme="noon"] .status,
+    body[data-theme="noon"] .t .name,
+    body[data-theme="noon"] .quoteSource,
+    body[data-theme="noon"] .quoteHint{
+      color: rgba(255,255,255,.78);
+    }
+
+    /* Animasyonlar */
+    @keyframes clouds{ 0%{ transform: translateX(-2%); } 100%{ transform: translateX(6%); } }
+    @keyframes haze{ 0%,100%{ transform: translateY(0); filter: blur(0px); } 50%{ transform: translateY(-6px); filter: blur(1px); } }
+    @keyframes breeze{ 0%,100%{ transform: translateX(0); opacity:.45; } 50%{ transform: translateX(8px); opacity:.60; } }
+    @keyframes twinkle{ 0%,100%{ opacity:.75; } 50%{ opacity:1; } }
+    @keyframes milky{ 0%,100%{ transform: translateX(0) translateY(0); } 50%{ transform: translateX(-10px) translateY(6px); } }
+
+    /* Orb */
+    .orb{
+      position:fixed;
+      width:52px; height:52px;
+      border-radius:999px;
+      z-index:-1;
+      pointer-events:none;
+      opacity:.9;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.85), rgba(255,255,255,.05) 55%, rgba(255,255,255,0) 70%);
+      box-shadow: 0 0 40px rgba(255,255,255,.15);
+      transition: transform 900ms ease, opacity 500ms ease;
+    }
+    .orb.sun{
+      background: radial-gradient(circle at 35% 35%, rgba(255,240,200,.95), rgba(255,180,80,.25) 55%, rgba(255,180,80,0) 70%);
+      box-shadow: 0 0 55px rgba(255,180,80,.15);
+    }
+  
+    /* ====== Ek Katmanlar: Yıldızlar + Dağ Silüeti ====== */
+    .bg{ z-index:-5; }
+    .stars{
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .stars::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1.5px 1.5px at 12% 22%, rgba(255,255,255,.9), transparent 60%),
+        radial-gradient(1.2px 1.2px at 28% 38%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(1.4px 1.4px at 46% 16%, rgba(255,255,255,.8), transparent 60%),
+        radial-gradient(1.1px 1.1px at 63% 34%, rgba(255,255,255,.6), transparent 60%),
+        radial-gradient(1.6px 1.6px at 82% 21%, rgba(255,255,255,.85), transparent 60%),
+        radial-gradient(1.3px 1.3px at 74% 44%, rgba(255,255,255,.75), transparent 60%);
+      opacity:.85;
+      animation: twinkle 4.5s ease-in-out infinite;
+    }
+    body[data-theme="night"] .stars{ opacity: 1; }
+
+    .mountains{
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .mountains::before{
+      content:"";
+      position:absolute;
+      bottom:-5%;
+      left:-10%;
+      width:120%;
+      height:45%;
+      background:
+        radial-gradient(80% 120% at 10% 100%, rgba(0,0,0,.55) 40%, transparent 41%),
+        radial-gradient(70% 110% at 35% 100%, rgba(0,0,0,.55) 40%, transparent 41%),
+        radial-gradient(85% 130% at 60% 100%, rgba(0,0,0,.55) 40%, transparent 41%),
+        radial-gradient(75% 120% at 85% 100%, rgba(0,0,0,.55) 40%, transparent 41%);
+      filter: blur(6px);
+      opacity:.55;
+    }
+    .mountains::after{
+      content:"";
+      position:absolute;
+      bottom:-8%;
+      left:-10%;
+      width:120%;
+      height:50%;
+      background:
+        radial-gradient(90% 140% at 5% 100%, rgba(0,0,0,.85) 40%, transparent 41%),
+        radial-gradient(85% 135% at 30% 100%, rgba(0,0,0,.85) 40%, transparent 41%),
+        radial-gradient(95% 150% at 55% 100%, rgba(0,0,0,.85) 40%, transparent 41%),
+        radial-gradient(80% 130% at 80% 100%, rgba(0,0,0,.85) 40%, transparent 41%);
+      opacity:.85;
+    }
+    body[data-theme="night"] .mountains::before{ opacity:.65; }
+    body[data-theme="night"] .mountains::after{ opacity:.92; }
+
+    /* ====== Camı biraz daha şeffaf yap ====== */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)) !important;
+      border: 1px solid rgba(255,255,255,.16) !important;
+    }
+    .controls{
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03)) !important;
+      border-color: rgba(255,255,255,.16) !important;
+    }
+    .t{
+      background: rgba(255,255,255,.05) !important;
+      border-color: rgba(255,255,255,.12) !important;
+    }
+    .t.active{
+      background: rgba(255,255,255,.18) !important;
+    }
+
+    /* Günün Sözü kartındaki 'top' / glow kaldırıldı */
+    .quoteBox::before,
+    .quoteBox::after{
+      display:none !important;
+    }
+    .quoteBox{
+      background: rgba(0,0,0,.14) !important;
+    }
+
+    /* ====== Chromatic Glass Edge (renk kırılması) ====== */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: inherit;
+      pointer-events:none;
+      background:
+        linear-gradient(120deg,
+          rgba(255,0,80,.08),
+          rgba(0,180,255,.08),
+          rgba(255,255,255,0) 40%);
+      mix-blend-mode: screen;
+      opacity:.55;
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:1px;
+      border-radius: inherit;
+      pointer-events:none;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    /* ====== Tema tintleri ====== */
+    body[data-theme="night"] .card,
+    body[data-theme="night"] .controls{
+      background: linear-gradient(180deg, rgba(120,170,255,.16), rgba(120,170,255,.05)) !important;
+      border-color: rgba(160,190,255,.22) !important;
+    }
+    body[data-theme="noon"] .card,
+    body[data-theme="noon"] .controls{
+      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08)) !important;
+      border-color: rgba(255,255,255,.30) !important;
+    }
+
+    /* Ay, gece modunda dağların üstünde yükseliyormuş gibi */
+    body[data-theme="night"] .moonWrap{ transform: translateY(-6px); }
+    body[data-theme="night"] #moonImg{ animation: moonRise 12s ease-in-out infinite; }
+    @keyframes moonRise{
+      0%   { transform: translateY(6px) scale(1.02); opacity:.85; }
+      50%  { transform: translateY(-10px) scale(1.04); opacity:1; }
+      100% { transform: translateY(6px) scale(1.02); opacity:.85; }
+    }
+
+  
+    /* ===== Kontrol: Cam + Top Fix + Soft Stars ===== */
+
+    /* Orb (top gibi görünen parlak küre) çok baskınsa, şeffaf camda top gibi görünür.
+       Daha 'ambient' yapmak için arka katmana alıp opaklığı düşürüyoruz. */
+    .orb{ z-index:-4 !important; opacity:.28 !important; }
+    body[data-theme="night"] .orb{ opacity:0 !important; } /* Gece yıldızlar varken orb kapalı */
+
+    /* Günün Sözü kartındaki top/glow tamamen kapalı */
+    .quoteBox::before,
+    .quoteBox::after{
+      content:none !important;
+      display:none !important;
+      background:none !important;
+      box-shadow:none !important;
+      filter:none !important;
+    }
+
+    /* ⭐ Ultra Soft Premium Stars */
+    .stars{
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .stars::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1.2px 1.2px at 12% 22%, rgba(255,255,255,.9), transparent 60%),
+        radial-gradient(1px 1px at 28% 38%, rgba(255,255,255,.7), transparent 60%),
+        radial-gradient(1.3px 1.3px at 46% 16%, rgba(255,255,255,.8), transparent 60%),
+        radial-gradient(1px 1px at 63% 34%, rgba(255,255,255,.6), transparent 60%),
+        radial-gradient(1.4px 1.4px at 82% 21%, rgba(255,255,255,.85), transparent 60%),
+        radial-gradient(1.1px 1.1px at 74% 44%, rgba(255,255,255,.75), transparent 60%);
+      opacity: .45;
+      filter: blur(.4px);
+      animation: softTwinkle 5.5s ease-in-out infinite;
+    }
+    body[data-theme="night"] .stars{ opacity: 1; }
+
+    @keyframes softTwinkle{
+      0%,100%{ opacity:.35; }
+      50%{ opacity:.55; }
+    }
+
+    /* Cam teması kontrol: kart/controls aşırı opaksa geri aç */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)) !important;
+    }
+    .controls{
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03)) !important;
+    }
+    .t{
+      background: rgba(255,255,255,.05) !important;
+    }
+
+  
+/* ===== Sunset → Night Stars Behavior ===== */
+.stars{
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
+body[data-theme="sunset"] .stars{
+  opacity: 0.55;
+}
+
+body[data-theme="night"] .stars{
+  opacity: 1;
+}
+
+body[data-theme="sunset"] .stars::before{
+  opacity:.35;
+  filter: blur(.6px);
+}
+
+body[data-theme="night"] .stars::before{
+  opacity:.55;
+  filter: blur(.3px);
+}
+
+
+/* ===== Mountain Background Integration ===== */
+.bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    linear-gradient(180deg, #0b1020, #03050f) !important;
+}
+
+body[data-theme="night"] .bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    radial-gradient(circle at 50% 20%, #0b1230, #02030a) !important;
+}
+
+body[data-theme="noon"] .bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    linear-gradient(180deg, #1784de, #0b2f6f) !important;
+}
+
+
+/* ===== Final Release Overrides (Kontrol Paketi) ===== */
+
+/* 1) Arka plan dağ görseli (dosya aynı klasörde: cinematic-bg.png) */
+.bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    linear-gradient(180deg, #0b1020, #03050f) !important;
+}
+
+body[data-theme="night"] .bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    radial-gradient(circle at 50% 20%, #0b1230, #02030a) !important;
+}
+
+body[data-theme="noon"] .bg{
+  background:
+    url("cinematic-bg.png") bottom center / cover no-repeat,
+    linear-gradient(180deg, #1784de, #0b2f6f) !important;
+}
+
+/* 2) CSS ile çizilen dağ katmanı varsa kapat (sadece görsel dağ kalsın) */
+.mountains{ display:none !important; }
+
+/* 3) Yıldızlar: Akşam (18-20) görünür, Gece full */
+.stars{
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+body[data-theme="sunset"] .stars{ opacity: 0.55; }
+body[data-theme="night"] .stars{ opacity: 1; }
+
+body[data-theme="sunset"] .stars::before{ opacity:.35; filter: blur(.6px); }
+body[data-theme="night"] .stars::before{ opacity:.55; filter: blur(.3px); }
+
+/* 4) Günün Sözü kartındaki top/glow kesin kapalı */
+.quoteBox::before,
+.quoteBox::after{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  box-shadow:none !important;
+  filter:none !important;
+}
+
+/* 5) 'Top gibi' görünen orb: daha ambient, gece kapalı */
+.orb{ z-index:-4 !important; opacity:.22 !important; }
+body[data-theme="night"] .orb{ opacity:0 !important; }
+
+
+/* ===== Cinematic Fullscreen Background ===== */
+.bg{
+  background:
+    url("cinematic-bg.png") center center / cover no-repeat !important;
+}
+
+50%{ opacity:.75; }
+}
+
+
+
+/* ===== FINAL STABLE: Background Glass + Corner Moon + Ultra Soft Reflection ===== */
+
+/* Fullscreen cover background (cinematic) */
+.bg{
+  background: url("cinematic-bg.png") center center / cover no-repeat !important;
+}
+
+/* Background glass tint layer */
+.bgGlass{
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  backdrop-filter: blur(26px) saturate(1.15);
+  -webkit-backdrop-filter: blur(26px) saturate(1.15);
+  background-color: rgba(255,255,255,.06);
+}
+
+body[data-theme="dawn"] .bgGlass{ background-color: rgba(255,170,220,.06); }
+body[data-theme="noon"] .bgGlass{ background-color: rgba(255,255,255,.09); }
+body[data-theme="gold"] .bgGlass{ background-color: rgba(255,200,120,.07); }
+body[data-theme="sunset"] .bgGlass{ background-color: rgba(255,120,120,.07); }
+body[data-theme="night"] .bgGlass{ background-color: rgba(120,170,255,.06); }
+
+/* 🌙 Corner Moon (stable, no JS) */
+.cornerMoon{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: .9;
+}
+
+.cornerMoon .moon{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(220,230,255,.25));
+  box-shadow: 0 0 18px rgba(255,255,255,.18), 0 0 34px rgba(180,210,255,.14);
+  filter: blur(.2px);
+}
+
+body[data-theme="night"] .cornerMoon .moon{
+  box-shadow: 0 0 22px rgba(160,200,255,.26), 0 0 52px rgba(120,170,255,.18);
+}
+
+/* 🌙 Ultra Soft Moon Reflection (night only, stable) */
+body[data-theme="night"] .card,
+body[data-theme="night"] .controls{
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-theme="night"] .card::before,
+body[data-theme="night"] .controls::before{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  pointer-events:none;
+
+  background: radial-gradient(
+    55% 50% at 85% 10%,
+    rgba(170,210,255,.10),
+    rgba(170,210,255,.04) 38%,
+    rgba(170,210,255,0) 70%
+  );
+
+  mix-blend-mode: screen;
+  opacity: .28;
+  filter: blur(.6px);
+}
+
+/* Remove any strong orb that looks like a 'top' */
+.orb{ opacity:.18 !important; z-index:-3 !important; }
+
+
+/* ===== NEXT POLISH PACK ===== */
+
+/* ✨ Vakit geçiş fade: tint katmanı yumuşak değişsin */
+.bgGlass{
+  transition: background-color 1.8s ease, opacity 1.8s ease, filter 1.8s ease;
+}
+
+/* 💎 Cam kenar ışık kırılması (ultra soft) */
+.card, .controls{ position: relative; overflow: hidden; }
+.card .glassEdge, .controls .glassEdge{ display:none; } /* just in case */
+
+.card::after,
+.controls::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  pointer-events:none;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,.22),
+    rgba(255,255,255,0) 28%,
+    rgba(255,255,255,.10) 58%,
+    rgba(255,255,255,0) 80%
+  );
+
+  opacity:.28;
+  mix-blend-mode: screen;
+}
+
+/* 🌙 Ay fazı: hilal (gündüz/akşam) -> dolunay (gece) */
+.cornerMoon .moon{ position: relative; }
+.cornerMoon .moon::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  /* gökyüzü rengiyle kapatıp hilal oluştur */
+  background: rgba(10,16,32,1);
+  transform: translateX(34%);
+  opacity:.88;
+}
+body[data-theme="dawn"] .cornerMoon .moon::after{ transform: translateX(40%); opacity:.92; }
+body[data-theme="noon"] .cornerMoon .moon::after{ transform: translateX(46%); opacity:.95; }
+body[data-theme="gold"] .cornerMoon .moon::after{ transform: translateX(38%); opacity:.90; }
+body[data-theme="sunset"] .cornerMoon .moon::after{ transform: translateX(30%); opacity:.88; }
+body[data-theme="night"] .cornerMoon .moon::after{ transform: translateX(0%); opacity:0; }
+
+/* 🕌 Aktif vakit glow (stabil) */
+.t{
+  transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+.t.active{
+  box-shadow: 0 0 18px rgba(255,255,255,.16);
+  transform: scale(1.02);
+}
+
+
+/* ===== Ads UI (Cam uyumlu) ===== */
+.adGlass{
+  margin: 18px auto 6px;
+  width: min(92%, 420px);
+  height: 90px;
+
+  border-radius: 18px;
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255,255,255,.55);
+  font-size: 14px;
+
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(6px);
+  animation: adIn .9s ease forwards;
+  animation-delay: .4s;
+}
+
+@keyframes adIn{
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body[data-theme="night"] .adGlass{
+  background: rgba(120,170,255,.10);
+  border: 1px solid rgba(160,200,255,.22);
+  box-shadow: 0 0 22px rgba(120,170,255,.10), inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+/* Mobil sticky reklam */
+@media (max-width: 700px){
+  .adSticky{
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 14px;
+    z-index: 50;
+
+    width: min(92%, 420px);
+    margin: 0;
+  }
+
+  body{
+    padding-bottom: 120px;
+  }
+}
+
+/* ❌ Reklam kapatma butonu */
+.adClose{
+  position: absolute;
+  top: 6px;
+  right: 8px;
+
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+  border: none;
+  cursor: pointer;
+
+  background: rgba(0,0,0,.35);
+  color: rgba(255,255,255,.7);
+  font-size: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.adClose:hover{
+  background: rgba(0,0,0,.55);
+}
+
+/* 🔘 Reklamı tekrar göster butonu */
+.showAdBtn{
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 60;
+
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+body[data-theme="night"] .showAdBtn{
+  background: rgba(120,170,255,.16);
+}
+
+
+/* ===== SEO + ADS FINAL (minimal, clean) ===== */
+.pageH1{
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px; overflow: hidden;
+}
+
+.seoSection{
+  width: min(92%, 520px);
+  margin: 18px auto 10px;
+}
+
+.seoDetails{
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 10px 12px;
+  color: rgba(255,255,255,.75);
+}
+
+.seoDetails summary{
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  color: rgba(255,255,255,.70);
+}
+
+.seoDetails summary::-webkit-details-marker{ display:none; }
+
+.seoDetails[open] summary{
+  margin-bottom: 8px;
+  color: rgba(255,255,255,.85);
+}
+
+.seoText p{
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.70);
+}
+
+</style>
+<meta name="description" content="Afyonkarahisar için güncel ezan vakitleri: imsak, öğle, ikindi, akşam, yatsı. Kalan süre geri sayım ve modern cam tasarım.">
+<link rel="canonical" href="https://ezanvakiti.netlify.app/afyonkarahisar.html">
+
+<meta property="og:title" content="Afyonkarahisar Ezan Vakitleri | İmsak Kaçta? (Güncel)">
+<meta property="og:description" content="Afyonkarahisar için güncel ezan vakitleri: imsak, öğle, ikindi, akşam, yatsı. Kalan süre geri sayım ve modern cam tasarım.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ezanvakiti.netlify.app/afyonkarahisar.html">
+
+</head>
+<body data-theme="night">
+  <div class="bg"></div>
+  <div class="bgGlass"></div>
+  <div class="cornerMoon"><div class="moon"></div></div>
+  <div class="grain"></div>
+  <div class="orb" id="orb"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"><span>🕌</span></div>
+        <div>
+          <h1>Ezan Vakitleri</h1>
+          <div class="sub">Cam tema • 5 vakit • geri sayım • vakte göre arka plan</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="controls">
+          <select id="citySelect" title="İl"></select>
+          <select id="districtSelect" title="İlçe"></select>
+
+          <button id="locBtn" title="Konumdan seç">
+            <span class="btnIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+            </span>
+            Konumdan Seç
+          </button>
+
+          <button id="refreshBtn" title="Yenile">
+            <span class="btnIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>
+                <path d="M21 3v7h-7"></path>
+              </svg>
+            </span>
+            Yenile
+          </button>
+        </div>
+        <div class="pillNote" id="locHint">Konum izni verirsen il seçilir, ilçe daima Merkez olur.</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <div class="card-pad">
+          <div class="hero">
+            <div>
+              <p class="nextTitle">Sıradaki vakit</p>
+              <div class="nextName" id="nextName">-</div>
+              <div class="countdown" id="countdown">--:--:--</div>
+              <div class="tiny" id="nextAt">-</div>
+              <div class="status" id="status">Veriler yükleniyor…</div>
+            </div>
+
+            <div class="moonWrap" title="Ay (Diyanet görseli)">
+              <img id="moonImg" alt="Ay" />
+            </div>
+          </div>
+
+          <div class="times" id="timesGrid"></div>
+        </div>
+        <div class="miniRow">
+          <div id="todayLabel">-</div>
+          <div id="sunInfo">-</div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div class="card-pad">
+          <h2 style="margin:0 0 10px; font-size:13px; color:var(--muted2); font-weight:700; letter-spacing:.25px; text-transform:uppercase;">
+            Günün Sözü
+          </h2>
+
+          <div class="quoteBox">
+            <div class="quoteMark">“</div>
+            <div class="quoteText" id="quoteText">Yükleniyor…</div>
+            <div class="quoteSource" id="quoteSource"></div>
+          </div>
+
+          <div class="quoteHint">Her gün otomatik değişir.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const API = "https://ezanvakti.emushaf.net";
+  const TURKEY_ID = "2";
+
+  function getPresetCitySlug(){
+    const p = new URLSearchParams(location.search);
+    const q = (p.get("il") || "").trim().toLowerCase();
+    if(q) return q;
+
+    const path = (location.pathname || "").toLowerCase();
+    const m = path.match(/\/([a-z0-9\-]+)\.html$/);
+    if(m && m[1] && m[1] !== "index") return m[1];
+    return "";
+  }
+
+
+  const citySelect = document.getElementById("citySelect");
+  const districtSelect = document.getElementById("districtSelect");
+  const refreshBtn = document.getElementById("refreshBtn");
+  const locBtn = document.getElementById("locBtn");
+  const locHint = document.getElementById("locHint");
+
+  const timesGrid = document.getElementById("timesGrid");
+  const nextNameEl = document.getElementById("nextName");
+  const countdownEl = document.getElementById("countdown");
+  const nextAtEl = document.getElementById("nextAt");
+  const statusEl = document.getElementById("status");
+  const moonImg = document.getElementById("moonImg");
+  const todayLabel = document.getElementById("todayLabel");
+  const sunInfo = document.getElementById("sunInfo");
+  const orb = document.getElementById("orb");
+
+  const quoteText = document.getElementById("quoteText");
+  const quoteSource = document.getElementById("quoteSource");
+
+  let monthly = [];
+  let tickTimer = null;
+  let selected = { cityId:null, districtId:null, cityName:"", districtName:"" };
+
+  const ICONS = {
+    imsak:  `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5A7.5 7.5 0 1 1 11.5 3a6 6 0 1 0 9.5 9.5z"/></svg>`,
+    ogle:   `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M19.8 4.2l-2.1 2.1M6.3 17.7l-2.1 2.1"/></svg>`,
+    ikindi: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10"/><path d="M8 18a6 6 0 1 1 8 0"/><path d="M12 2v2"/></svg>`,
+    aksam:  `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M12 4v8"/><path d="M6 12h12"/><path d="M7 7l2 2M17 7l-2 2"/></svg>`,
+    yatsi:  `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5A7.5 7.5 0 1 1 11.5 3a6 6 0 1 0 9.5 9.5z"/><path d="M4.5 13.5l.6.2.2.6.2-.6.6-.2-.6-.2-.2-.6-.2.6z"/><path d="M6.8 8.8l.8.3.3.8.3-.8.8-.3-.8-.3-.3-.8-.3.8z"/></svg>`
+  };
+
+  const PRAYERS = [
+    { key:"Imsak",  label:"İmsak",  icon:ICONS.imsak },
+    { key:"Ogle",   label:"Öğle",   icon:ICONS.ogle  },
+    { key:"Ikindi", label:"İkindi", icon:ICONS.ikindi},
+    { key:"Aksam",  label:"Akşam",  icon:ICONS.aksam },
+    { key:"Yatsi",  label:"Yatsı",  icon:ICONS.yatsi },
+  ];
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function todayKey(d=new Date()){
+    return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()}`;
+  }
+  function parseHHMM(hhmm){
+    const [h,m] = hhmm.split(":").map(Number);
+    return {h, m};
+  }
+  function asDate(baseDate, hhmm){
+    const {h,m} = parseHHMM(hhmm);
+    return new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), h, m, 0, 0);
+  }
+  function fmtTRLong(d){
+    try{
+      return new Intl.DateTimeFormat("tr-TR",{weekday:"long", year:"numeric", month:"long", day:"numeric"}).format(d);
+    }catch{ return d.toDateString(); }
+  }
+  function msToHMS(ms){
+    ms = Math.max(0, ms);
+    const s = Math.floor(ms/1000);
+    const hh = Math.floor(s/3600);
+    const mm = Math.floor((s%3600)/60);
+    const ss = s%60;
+    return `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
+  }
+
+  async function jget(path){
+    const r = await fetch(API + path, { cache:"no-store" });
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  }
+
+  function setStatus(msg){ statusEl.textContent = msg; }
+  function savePrefs(){
+    localStorage.setItem("ezan_cityId", selected.cityId || "");
+    localStorage.setItem("ezan_districtId", selected.districtId || "");
+  }
+  function loadPrefs(){
+    return {
+      cityId: localStorage.getItem("ezan_cityId") || "",
+      districtId: localStorage.getItem("ezan_districtId") || ""
+    };
+  }
+
+  function buildOptions(sel, items, valueKey, labelKey, selectedValue){
+    sel.innerHTML = "";
+    for(const it of items){
+      const opt = document.createElement("option");
+      opt.value = it[valueKey];
+      opt.textContent = it[labelKey];
+      if(String(it[valueKey]) === String(selectedValue)) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
+
+  function normalizeTR(s){
+    return (s || "")
+      .toLowerCase()
+      .replaceAll("ı","i").replaceAll("ş","s").replaceAll("ğ","g")
+      .replaceAll("ü","u").replaceAll("ö","o").replaceAll("ç","c")
+      .replace(/\s+/g," ")
+      .trim();
+  }
+
+  function findMerkezDistrictId(districts){
+    const names = districts.map(d => ({ id: d.IlceID, n: normalizeTR(d.IlceAdi) }));
+
+    let hit = names.find(x => x.n === "merkez");
+    if(hit) return hit.id;
+
+    hit = names.find(x => x.n.includes("merkez") && !x.n.includes("merkezefendi"));
+    if(hit) return hit.id;
+
+    hit = names.find(x => x.n.endsWith(" merkez") || x.n.startsWith("merkez "));
+    if(hit) return hit.id;
+
+    return districts[0]?.IlceID;
+  }
+
+  /* Tema saat aralıklarına göre */
+  function setTheme(now){
+    const h = now.getHours() + now.getMinutes()/60;
+    let theme = "night";
+    if(h >= 4 && h < 7) theme = "dawn";
+    else if(h >= 7 && h < 15) theme = "noon";
+    else if(h >= 15 && h < 18) theme = "gold";
+    else if(h >= 18 && h < 20) theme = "sunset";
+    document.body.setAttribute("data-theme", theme);
+
+    const isDay = (theme === "noon" || theme === "gold");
+    orb.classList.toggle("sun", isDay);
+  }
+
+  function moveOrb(now){
+    const hours = now.getHours() + now.getMinutes()/60;
+    const day = hours >= 7 && hours < 20;
+
+    const p = day
+      ? (hours - 7) / (20 - 7)
+      : (hours >= 20 ? (hours - 20) / (28 - 20) : (hours + 4) / 8);
+
+    const x = day ? (0.10 + 0.80*p) : (0.85 - 0.70*p);
+    const arc = Math.sin(Math.PI * p);
+    const y = day ? (0.18 + 0.18*(1-arc)) : (0.22 + 0.16*(1-arc));
+
+    const px = Math.round(window.innerWidth * x) - 26;
+    const py = Math.round(window.innerHeight * y) - 26;
+    document.documentElement.style.setProperty('--moonX', `${Math.round(window.innerWidth * x)}px`);
+    document.documentElement.style.setProperty('--moonY', `${Math.round(window.innerHeight * y)}px`);
+    orb.style.transform = `translate(${px}px, ${py}px)`;
+    orb.style.opacity = 0.9;
+  }
+
+  function dayOfYear(d=new Date()){
+    const start = new Date(d.getFullYear(), 0, 0);
+    const diff = d - start;
+    return Math.floor(diff / 86400000);
+  }
+
+  function setDailyQuote(){
+    // Not: Metinler kısa tutuldu (uzun meal/hadis metni paylaşmamak için).
+    // Kaynakta sure/ayet veya hadis kaynağı mutlaka yazıyor.
+    const QUOTES = [
+      { t:"Allah sabredenlerle beraberdir.", src:"Bakara Suresi, 2:153" },
+      { t:"Kalpler ancak Allah’ı anmakla huzur bulur.", src:"Ra’d Suresi, 13:28" },
+      { t:"Zorlukla beraber mutlaka bir kolaylık vardır.", src:"İnşirah Suresi, 94:5" },
+      { t:"İyilik ve takvada yardımlaşın.", src:"Maide Suresi, 5:2" },
+      { t:"Affetmek daha hayırlıdır.", src:"Nur Suresi, 24:22" },
+
+      { t:"Kolaylaştırın, zorlaştırmayın.", src:"Hadis: Buhârî, İlim; Müslim, Cihad (meşhur rivayet)" },
+      { t:"Ameller niyetlere göredir.", src:"Hadis: Buhârî, Bed’ü’l-vahy; Müslim, İmâre" },
+      { t:"Güzel söz sadakadır.", src:"Hadis: Buhârî, Edeb; Müslim, Zekât" },
+      { t:"Merhamet etmeyene merhamet edilmez.", src:"Hadis: Buhârî, Tevhid; Müslim, Fedâil" },
+      { t:"İnsanlara faydalı olan en hayırlıdır.", src:"Hadis (meşhur rivayet)" },
+    ];
+
+    const idx = dayOfYear(new Date()) % QUOTES.length;
+    const q = QUOTES[idx];
+    quoteText.textContent = q.t;
+    quoteSource.textContent = q.src;
+  }
+
+  async function loadCities(){
+    const cities = await jget(`/sehirler/${TURKEY_ID}`);
+    const prefs = loadPrefs();
+
+    let chosenCityId = prefs.cityId;
+
+    const presetSlug = getPresetCitySlug();
+    if(presetSlug){
+      const match = cities.find(c => normalizeTR(c.SehirAdi).includes(presetSlug));
+      if(match) chosenCityId = match.SehirID;
+    }
+
+    if(!chosenCityId){
+      const urfa = cities.find(c => normalizeTR(c.SehirAdi).includes("sanliurfa"));
+      chosenCityId = urfa ? urfa.SehirID : cities[0]?.SehirID;
+    }
+
+    buildOptions(citySelect, cities, "SehirID", "SehirAdi", chosenCityId);
+    selected.cityId = citySelect.value;
+    selected.cityName = citySelect.options[citySelect.selectedIndex]?.textContent || "";
+
+    await loadDistricts(selected.cityId, prefs.districtId);
+  }
+
+  async function loadDistricts(cityId, preferredDistrictId=""){
+    const districts = await jget(`/ilceler/${cityId}`);
+
+    let chosen = preferredDistrictId;
+    if(!chosen || !districts.some(d => String(d.IlceID) === String(chosen))){
+      chosen = findMerkezDistrictId(districts);
+    }
+
+    buildOptions(districtSelect, districts, "IlceID", "IlceAdi", chosen);
+
+    selected.districtId = districtSelect.value;
+    selected.districtName = districtSelect.options[districtSelect.selectedIndex]?.textContent || "";
+    savePrefs();
+  }
+
+  function pickTodayAndTomorrow(){
+    const now = new Date();
+    const key = todayKey(now);
+    const idx = monthly.findIndex(x => String(x.MiladiTarihKisa) === key);
+    if(idx < 0) return { today:null, tomorrow:null };
+    return { today: monthly[idx], tomorrow: monthly[idx+1] || null };
+  }
+
+  function computeNext(now, today, tomorrow){
+    const base = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const items = PRAYERS.map(p => {
+      const dt = asDate(base, today[p.key]);
+      return { ...p, dt, time: today[p.key] };
+    });
+
+    let next = items.find(it => it.dt > now);
+    if(!next){
+      if(!tomorrow) return { next:null, items };
+      const tomorrowBase = new Date(base.getTime() + 86400000);
+      next = { key:"Imsak", label:"İmsak", icon:ICONS.imsak, time: tomorrow.Imsak, dt: asDate(tomorrowBase, tomorrow.Imsak) };
+    }
+    return { next, items };
+  }
+
+  function scrollActivePrayerIntoView(){
+    const isMobile = window.matchMedia("(max-width: 700px)").matches;
+    if(!isMobile) return;
+    const active = document.querySelector(".t.active");
+    if(!active) return;
+    setTimeout(() => {
+      active.scrollIntoView({ behavior:"smooth", inline:"center", block:"nearest" });
+    }, 120);
+  }
+
+  function render(today, tomorrow){
+    const now = new Date();
+    setTheme(now);
+    moveOrb(now);
+
+    todayLabel.textContent = `${selected.cityName} / ${selected.districtName} • ${fmtTRLong(now)}`;
+    sunInfo.textContent = `Güneş: ${today.Gunes} • Batış: ${today.GunesBatis || today.Aksam}`;
+
+    moonImg.src = today.AyinSekliURL || "";
+
+    const { next, items } = computeNext(now, today, tomorrow);
+    if(!next){
+      nextNameEl.textContent = "-";
+      countdownEl.textContent = "--:--:--";
+      nextAtEl.textContent = "Yarın verisi bulunamadı.";
+      return;
+    }
+
+    nextNameEl.textContent = next.label;
+    nextAtEl.textContent = `Saat ${next.time} (kalan: ${msToHMS(next.dt - now)})`;
+
+    timesGrid.innerHTML = "";
+    for(const it of items){
+      const box = document.createElement("div");
+      box.className = "t" + (it.label === next.label ? " active" : "");
+      box.innerHTML = `
+        <div class="tTop">
+          <span class="tIcon" aria-hidden="true">${it.icon}</span>
+          <div class="name">${it.label}</div>
+        </div>
+        <div class="val">${it.time}</div>
+      `;
+      timesGrid.appendChild(box);
+    }
+
+    if(tickTimer) clearInterval(tickTimer);
+    tickTimer = setInterval(() => {
+      const n = new Date();
+      setTheme(n);
+      moveOrb(n);
+
+      const ms = next.dt - n;
+      countdownEl.textContent = msToHMS(ms);
+
+      if(ms <= 0){
+        clearInterval(tickTimer);
+        loadTimes().catch(()=>{});
+      }
+    }, 250);
+
+    scrollActivePrayerIntoView();
+  }
+
+  async function loadTimes(){
+    try{
+      setStatus("Vakitler çekiliyor…");
+      const ilce = selected.districtId;
+      if(!ilce) throw new Error("İlçe seçilmedi.");
+
+      monthly = await jget(`/vakitler/${ilce}`);
+
+      const { today, tomorrow } = pickTodayAndTomorrow();
+      if(!today){
+        setStatus("Bugünün verisi bulunamadı (API tarih eşleşmedi).");
+        return;
+      }
+      setStatus("Tamam ✅");
+      render(today, tomorrow);
+    }catch(err){
+      console.error(err);
+      setStatus("Hata: veri alınamadı. İnternet / API erişimini kontrol et.");
+    }
+  }
+
+  // Konumdan il bul, ilçe otomatik Merkez
+  async function reverseGeocode(lat, lon){
+    const url =
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&accept-language=tr`;
+    const r = await fetch(url, { cache:"no-store", headers: { "Accept":"application/json" } });
+    if(!r.ok) throw new Error("Reverse geocode başarısız.");
+    return r.json();
+  }
+
+  async function selectCityThenMerkezByName(cityName){
+    const targetCity = normalizeTR(cityName);
+
+    const cities = [...citySelect.options].map(o => ({ id:o.value, name:o.textContent || "" }));
+    let city = cities.find(c => normalizeTR(c.name) === targetCity)
+           || cities.find(c => normalizeTR(c.name).includes(targetCity))
+           || cities.find(c => targetCity.includes(normalizeTR(c.name)));
+
+    if(!city && targetCity.includes("istanbul")) city = cities.find(c => normalizeTR(c.name) === "istanbul");
+    if(!city && targetCity.includes("sanliurfa")) city = cities.find(c => normalizeTR(c.name).includes("sanliurfa"));
+
+    if(!city) throw new Error(`Şehir eşleşmedi: ${cityName}`);
+
+    citySelect.value = city.id;
+    selected.cityId = city.id;
+    selected.cityName = city.name;
+
+    await loadDistricts(selected.cityId, "");
+    await loadTimes();
+  }
+
+  async function locateAndSelect(){
+    if(!navigator.geolocation){
+      locHint.textContent = "Bu tarayıcı konumu desteklemiyor.";
+      return;
+    }
+
+    locHint.textContent = "Konum alınıyor…";
+    locBtn.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      try{
+        const { latitude, longitude } = pos.coords;
+        locHint.textContent = "Konum bulundu. İl seçiliyor (ilçe Merkez)…";
+
+        const data = await reverseGeocode(latitude, longitude);
+        const a = data.address || {};
+        const city = a.province || a.state || a.city || a.region || "";
+        if(!city) throw new Error("Şehir adı bulunamadı.");
+
+        await selectCityThenMerkezByName(city);
+        locHint.textContent = `Konumdan seçildi: ${selected.cityName} / ${selected.districtName}`;
+      }catch(e){
+        console.error(e);
+        locHint.textContent = "Konum bulundu ama otomatik eşleşme olmadı. İl/ilçeyi elle seçebilirsin.";
+      }finally{
+        locBtn.disabled = false;
+      }
+    }, (err) => {
+      locBtn.disabled = false;
+      if(err && err.code === 1){
+        locHint.textContent = "Konum izni reddedildi. İl/ilçeyi elle seçebilirsin.";
+      }else{
+        locHint.textContent = "Konum alınamadı. GPS veya izinleri kontrol et.";
+      }
+    }, { enableHighAccuracy:true, timeout:12000, maximumAge:30000 });
+  }
+
+  // Olaylar
+  citySelect.addEventListener("change", async () => {
+    selected.cityId = citySelect.value;
+    selected.cityName = citySelect.options[citySelect.selectedIndex]?.textContent || "";
+    await loadDistricts(selected.cityId, "");
+    await loadTimes();
+  });
+
+  districtSelect.addEventListener("change", async () => {
+    selected.districtId = districtSelect.value;
+    selected.districtName = districtSelect.options[districtSelect.selectedIndex]?.textContent || "";
+    savePrefs();
+    await loadTimes();
+  });
+
+  refreshBtn.addEventListener("click", loadTimes);
+  locBtn.addEventListener("click", locateAndSelect);
+
+  // Başlat
+  (async () => {
+    setDailyQuote();
+    await loadCities();
+    await loadTimes();
+  })();
+})();
+</script>
+
+  <!-- 💎 Reklam Alanı (Adsense buraya) -->
+  <div class="adGlass adSticky" id="adBox">
+    <button class="adClose" id="adClose" aria-label="Reklamı kapat">✕</button>
+    <span>Reklam Alanı</span>
+  </div>
+
+  <!-- 🔘 Reklamı tekrar göster -->
+  <button class="showAdBtn" id="showAdBtn">Reklamı Göster</button>
+
+
+<script>
+  const adBox = document.getElementById("adBox");
+  const adClose = document.getElementById("adClose");
+  const showAdBtn = document.getElementById("showAdBtn");
+
+  function updateAdUI(){
+    const hidden = localStorage.getItem("adHidden") === "true";
+    if(!adBox) return;
+
+    if(hidden){
+      adBox.style.display = "none";
+      if(showAdBtn){
+        showAdBtn.style.opacity = "1";
+        showAdBtn.style.pointerEvents = "auto";
+        showAdBtn.style.transform = "translateY(0)";
+      }
+    }else{
+      adBox.style.display = "flex";
+      if(showAdBtn){
+        showAdBtn.style.opacity = "0";
+        showAdBtn.style.pointerEvents = "none";
+      }
+    }
+  }
+
+  updateAdUI();
+
+  adClose?.addEventListener("click", () => {
+    localStorage.setItem("adHidden", "true");
+    updateAdUI();
+  });
+
+  showAdBtn?.addEventListener("click", () => {
+    localStorage.setItem("adHidden", "false");
+    updateAdUI();
+  });
+</script>
+
+</body>
+</html>

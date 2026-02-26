@@ -1,0 +1,1 @@
+ADMIN PRO KURULUM (Netlify)\n\n1) Siteyi GitHub'a bağla.\n2) Netlify -> Identity -> Enable\n3) Identity -> Git Gateway -> Enable\n4) /admin adresinden giriş yap.\n
