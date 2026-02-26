@@ -2,16 +2,17 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
-  - name: "settings"
-    label: "Site Ayarları"
+  - name: "content"
+    label: "İçerik"
     files:
-      - file: "settings/gunun-sozu.json"
+      - name: "quote"
         label: "Günün Sözü"
-        name: "dailyQuote"
+        file: "content/quote.json"
+        format: "json"
         fields:
           - { label: "Söz", name: "text", widget: "string" }
-          - { label: "Kaynak (Ayet/Hadis)", name: "source", widget: "string" }
+          - { label: "Kaynak", name: "source", widget: "string" }
